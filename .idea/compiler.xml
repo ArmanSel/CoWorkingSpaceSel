@@ -7,12 +7,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="spring-boot-crud-example" />
+        <module name="coworkingspacesel" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="coworkingspacesel" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="coworkingspacesel" options="-parameters" />
       <module name="spring-boot-crud-example" options="-parameters" />
     </option>
   </component>
