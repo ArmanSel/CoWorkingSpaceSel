@@ -20,9 +20,9 @@ import java.util.UUID;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Entity(name = "GAME")
+@Entity(name = "BOOKING")
 @DynamicUpdate
-public class GameEntity implements Serializable {
+public class BookingEntity implements Serializable {
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -54,8 +54,8 @@ public class GameEntity implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        GameEntity gameEntity = (GameEntity) o;
-        return id != null && Objects.equals(id, gameEntity.id);
+        BookingEntity bookingEntity = (BookingEntity) o;
+        return id != null && Objects.equals(id, bookingEntity.id);
     }
 
     @Override

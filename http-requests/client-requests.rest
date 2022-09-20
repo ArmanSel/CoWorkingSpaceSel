@@ -1,17 +1,17 @@
-// Get all games
-GET http://localhost:8080/games
+// Get all bookings
+GET http://localhost:8080/bookings
 Authorization: Bearer {{jwt}}
 
 ###
 
-// Get one specific game
-GET http://localhost:8080/games/413e2297-b84b-42ef-97ed-16a8a9d1d671
+// Get one specific booking
+GET http://localhost:8080/bookings/413e2297-b84b-42ef-97ed-16a8a9d1d671
 Authorization: Bearer {{jwt}}
 
 ###
 
-// Create a new game
-POST http://localhost:8080/games/
+// Create a new booking
+POST http://localhost:8080/bookings/
 Authorization: Bearer {{jwt}}
 Content-Type: application/json
 
@@ -22,8 +22,8 @@ Content-Type: application/json
 
 ###
 
-// Update one specific game
-PUT http://localhost:8080/games/413e2297-b84b-42ef-97ed-16a8a9d1d671
+// Update one specific booking
+PUT http://localhost:8080/bookings/413e2297-b84b-42ef-97ed-16a8a9d1d671
 Authorization: Bearer {{jwt}}
 
 {
@@ -33,7 +33,7 @@ Authorization: Bearer {{jwt}}
 
 ###
 
-// Delete one specific and existing game
-DELETE http://localhost:8080/games/413e2297-b84b-42ef-97ed-16a8a9d1d671
+// Delete one specific and existing booking
+DELETE http://localhost:8080/bookings/413e2297-b84b-42ef-97ed-16a8a9d1d671
 Authorization: Bearer {{jwt}}
 

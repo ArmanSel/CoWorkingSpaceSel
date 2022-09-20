@@ -3,9 +3,9 @@ package com.selimovic.coworkingspacesel.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import com.selimovic.coworkingspacesel.model.GameEntity;
+import com.selimovic.coworkingspacesel.model.BookingEntity;
 import com.selimovic.coworkingspacesel.service.CategoryService;
-import com.selimovic.coworkingspacesel.service.GameService;
+import com.selimovic.coworkingspacesel.service.BookingService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,15 +13,15 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/games")
+@RequestMapping("/bookings")
 @Tag(name = "Bookings", description = "Booking management endpoints")
-public class GameController {
+public class BookingController {
 
-    private final GameService gameService;
+    private final BookingService bookingService;
     private final CategoryService categoryService;
 
-    GameController(GameService gameService, CategoryService categoryService) {
-        this.gameService = gameService;
+    BookingController(BookingService bookingService, CategoryService categoryService) {
+        this.bookingService = bookingService;
         this.categoryService = categoryService;
     }
 
@@ -31,13 +31,13 @@ public class GameController {
             security = {@SecurityRequirement(name = "JWT Auth")}
     )
     @GetMapping
-    List<GameEntity> loadAll(@RequestParam(value = "name", required = false) String gameName) {
+    List<BookingEntity> loadAll(@RequestParam(value = "bookingName", required = false) String bookingName) {
 
-        if(gameName != null) {
-            return gameService.loadAllByName(gameName);
+        if(bookingName != null) {
+            return bookingService.loadAllByName(bookingName);
         }
 
-        return gameService.loadAll();
+        return bookingService.loadAll();
     }
 
     @Operation(
@@ -46,8 +46,8 @@ public class GameController {
             security = {@SecurityRequirement(name = "JWT Auth")}
     )
     @GetMapping("/{id}")
-    GameEntity loadOne(@PathVariable UUID id) {
-        return gameService.loadOne(id);
+    BookingEntity loadOne(@PathVariable UUID id) {
+        return bookingService.loadOne(id);
     }
 
     @Operation(
@@ -57,9 +57,9 @@ public class GameController {
     )
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
-    GameEntity create(@RequestBody GameEntity entity) {
+    BookingEntity create(@RequestBody BookingEntity entity) {
         entity.setCategory(categoryService.loadOne(entity.getCategoryId()));
-        return gameService.create(entity);
+        return bookingService.create(entity);
     }
 
     @Operation(
@@ -69,8 +69,8 @@ public class GameController {
     )
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
-    GameEntity update(@RequestBody GameEntity updatedGameEntity, @PathVariable UUID id) {
-        return gameService.update(updatedGameEntity);
+    BookingEntity update(@RequestBody BookingEntity updatedBookingEntity, @PathVariable UUID id) {
+        return bookingService.update(updatedBookingEntity);
     }
 
     @Operation(
@@ -81,7 +81,7 @@ public class GameController {
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     void delete(@PathVariable UUID id) {
-        gameService.delete(id);
+        bookingService.delete(id);
     }
 
 }

@@ -3,7 +3,7 @@ VALUES ('4be5f5bf-8eb5-44ea-8eb5-a5e807856d09', 'Battle Royale'),
        ('e1eec954-6ef4-4926-8183-7575af189f2a', 'MMO RPG'),
        ('692fa28c-fafd-442b-8022-4ed792995053', 'MOBA');
 
-INSERT INTO GAME (id, name, booking_type, status, category)
+INSERT INTO BOOKING (id, name, booking_type, status, category)
 VALUES ('413e2297-b84b-42ef-97ed-16a8a9d1d671', 'APEX Legends', 'DAY', 'APPROVED', '4be5f5bf-8eb5-44ea-8eb5-a5e807856d09'),
        ('b8160463-01a0-4c7a-bd46-5b3716dbe4c6', 'Guild Wars 2','DAY', 'APPROVED', 'e1eec954-6ef4-4926-8183-7575af189f2a'),
        ('3c13c533-fbac-4881-b94d-f95cb2ef16c8', 'League of Legends','DAY', 'APPROVED', '692fa28c-fafd-442b-8022-4ed792995053');

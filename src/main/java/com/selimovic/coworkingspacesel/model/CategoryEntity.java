@@ -36,8 +36,8 @@ public class CategoryEntity implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        CategoryEntity gameEntity = (CategoryEntity) o;
-        return id != null && Objects.equals(id, gameEntity.id);
+        CategoryEntity bookingEntity = (CategoryEntity) o;
+        return id != null && Objects.equals(id, bookingEntity.id);
     }
 
     @Override

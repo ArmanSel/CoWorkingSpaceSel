@@ -2,7 +2,7 @@ package com.selimovic.coworkingspacesel;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.selimovic.coworkingspacesel.model.GameEntity;
+import com.selimovic.coworkingspacesel.model.BookingEntity;
 import com.selimovic.coworkingspacesel.security.JwtServiceHMAC;
 import lombok.val;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class GameControllerIntegrationTest {
+public class BookingControllerIntegrationTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -36,12 +36,12 @@ public class GameControllerIntegrationTest {
     public void allGamesShouldBeReturnedFromService() throws Exception {
         val accessToken = jwtService.createNewJWT(UUID.randomUUID().toString(), "9135f12e-1b66-4ee6-bbae-df37303cc154", "admin", List.of("ADMIN"));
 
-        val response = mockMvc.perform(get("/games").header("Authorization", "Bearer " + accessToken))
+        val response = mockMvc.perform(get("/bookings").header("Authorization", "Bearer " + accessToken))
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andReturn();
 
-        List<GameEntity> games = objectMapper.readValue(response.getResponse().getContentAsString(), new TypeReference<>() {});
+        List<BookingEntity> games = objectMapper.readValue(response.getResponse().getContentAsString(), new TypeReference<>() {});
 
         assertEquals(3, games.size());
     }
