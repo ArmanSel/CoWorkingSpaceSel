@@ -1,0 +1,30 @@
+DROP TABLE IF EXISTS CATEGORY CASCADE;
+CREATE TABLE CATEGORY
+(
+    id   UUID,
+    name VARCHAR(50) NOT NULL,
+
+    PRIMARY KEY (id)
+);
+
+DROP TABLE IF EXISTS GAME CASCADE;
+CREATE TABLE GAME
+(
+    id       UUID,
+    name     VARCHAR(50) NOT NULL,
+    category UUID NOT NULL,
+
+    PRIMARY KEY (id),
+    FOREIGN KEY (category) REFERENCES CATEGORY (id)
+);
+
+DROP TABLE IF EXISTS MEMBER CASCADE;
+CREATE TABLE MEMBER
+(
+    id            UUID,
+    username      VARCHAR(2000) NOT NULL,
+    password_hash VARCHAR(2000) NOT NULL,
+    is_admin      BOOLEAN       NOT NULL DEFAULT FALSE,
+
+    PRIMARY KEY (id)
+);
