@@ -1,11 +1,10 @@
 package com.selimovic.coworkingspacesel.controller;
 
-import com.selimovic.coworkingspacesel.exception.GameNotFoundException;
-import com.selimovic.coworkingspacesel.model.CategoryEntity;
-import com.selimovic.coworkingspacesel.service.CategoryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import com.selimovic.coworkingspacesel.model.CategoryEntity;
+import com.selimovic.coworkingspacesel.service.CategoryService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +28,12 @@ public class CategoryController {
             security = {@SecurityRequirement(name = "JWT Auth")}
     )
     @GetMapping
-    List<CategoryEntity> loadAll() {
+    List<CategoryEntity> loadAll(@RequestParam(value = "name", required = false) String categoryName) {
+
+        if(categoryName != null) {
+            return categoryService.loadAllByName(categoryName);
+        }
+
         return categoryService.loadAll();
     }
 
@@ -40,8 +44,7 @@ public class CategoryController {
     )
     @GetMapping("/{id}")
     CategoryEntity loadOne(@PathVariable UUID id) {
-        return categoryService.loadOne(id)
-                .orElseThrow(() -> new GameNotFoundException("Category with id " + id + " not found!"));
+        return categoryService.loadOne(id);
     }
 
     @Operation(

@@ -1,47 +1,56 @@
 package com.selimovic.coworkingspacesel.service;
 
+import com.selimovic.coworkingspacesel.exception.CategoryNotFoundException;
 import com.selimovic.coworkingspacesel.model.CategoryEntity;
 import com.selimovic.coworkingspacesel.repository.CategoryRepository;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
 @Slf4j
 public class CategoryService {
 
-    private final CategoryRepository repository;
+    private final CategoryRepository categoryRepository;
 
-    CategoryService(CategoryRepository repository) {
-        this.repository = repository;
+    CategoryService(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
     }
 
     public List<CategoryEntity> loadAll() {
-        log.info("Executing find all games ...");
-        return repository.findAll();
+        log.info("Executing find all categories ...");
+        return categoryRepository.findAll();
     }
 
-    public Optional<CategoryEntity> loadOne(UUID gameId) {
-        log.info("Executing find game with id " + gameId + " ...");
-        return repository.findById(gameId);
+    public List<CategoryEntity> loadAllByName(String categoryName) {
+        log.info("Executing find categories by name '" + categoryName + "' ...");
+        return categoryRepository.findAllByName(categoryName);
+    }
+
+    public CategoryEntity loadOne(UUID categoryId) {
+        log.info("Executing find category with id " + categoryId + " ...");
+        return categoryRepository.findById(categoryId).orElseThrow(() -> new CategoryNotFoundException("Category not found with id " + categoryId));
     }
 
     public CategoryEntity create(CategoryEntity category) {
         log.info("Executing create category with id " + category.getId() + " ...");
-        return repository.save(category);
+        return categoryRepository.save(category);
     }
 
-    public CategoryEntity update(CategoryEntity updatedGame) {
-        log.info("Executing update game with id " + updatedGame.getId() + " ...");
-        return repository.save(updatedGame);
+    public CategoryEntity update(CategoryEntity updatedCategory) {
+        log.info("Executing update category with id " + updatedCategory.getId() + " ...");
+        val categoryId = updatedCategory.getId();
+        categoryRepository.findById(categoryId).orElseThrow(() -> new CategoryNotFoundException("Category not found with id " + categoryId));
+        return categoryRepository.save(updatedCategory);
     }
 
-    public void delete(UUID gameId) {
-        log.info("Executing delete game with id " + gameId + " ...");
-        repository.deleteById(gameId);
+    public void delete(UUID categoryId) {
+        log.info("Executing delete category with id " + categoryId + " ...");
+        categoryRepository.findById(categoryId).orElseThrow(() -> new CategoryNotFoundException("Category not found with id " + categoryId));
+        categoryRepository.deleteById(categoryId);
     }
 
 }

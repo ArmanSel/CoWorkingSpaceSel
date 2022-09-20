@@ -1,12 +1,11 @@
 package com.selimovic.coworkingspacesel.controller;
 
-import com.selimovic.coworkingspacesel.exception.GameNotFoundException;
-import com.selimovic.coworkingspacesel.model.GameEntity;
-import com.selimovic.coworkingspacesel.service.CategoryService;
-import com.selimovic.coworkingspacesel.service.GameService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import com.selimovic.coworkingspacesel.model.GameEntity;
+import com.selimovic.coworkingspacesel.service.CategoryService;
+import com.selimovic.coworkingspacesel.service.GameService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,19 +31,23 @@ public class GameController {
             security = {@SecurityRequirement(name = "JWT Auth")}
     )
     @GetMapping
-    List<GameEntity> loadAll() {
+    List<GameEntity> loadAll(@RequestParam(value = "name", required = false) String gameName) {
+
+        if(gameName != null) {
+            return gameService.loadAllByName(gameName);
+        }
+
         return gameService.loadAll();
     }
 
     @Operation(
-            summary = "Get one specific game",
-            description = "Loads one specific game from database.",
+            summary = "Get one specific game by id",
+            description = "Loads one specific game by id from database.",
             security = {@SecurityRequirement(name = "JWT Auth")}
     )
     @GetMapping("/{id}")
     GameEntity loadOne(@PathVariable UUID id) {
-        return gameService.loadOne(id)
-                .orElseThrow(() -> new GameNotFoundException("Game with id " + id + " not found!"));
+        return gameService.loadOne(id);
     }
 
     @Operation(
@@ -55,7 +58,7 @@ public class GameController {
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     GameEntity create(@RequestBody GameEntity entity) {
-        entity.setCategory(categoryService.loadOne(entity.getCategoryId()).orElseThrow());
+        entity.setCategory(categoryService.loadOne(entity.getCategoryId()));
         return gameService.create(entity);
     }
 
