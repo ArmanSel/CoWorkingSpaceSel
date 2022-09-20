@@ -114,15 +114,27 @@ public class AuthController {
     )
     @PostMapping(value = "/register", produces = "application/json")
     public TokenResponse register(
-            @Parameter(description = "Username / E-Mail", required = true)
+            @Parameter(description = "Username", required = true)
             @RequestParam(name = "username", required = true)
             String username,
+            @Parameter(description = "Email", required = true)
+            @RequestParam(name = "email", required = true)
+            String email,
+            @Parameter(description = "Firstname", required = true)
+            @RequestParam(name = "firstname", required = true)
+            String firstname,
+            @Parameter(description = "Lastname", required = true)
+            @RequestParam(name = "lastname", required = true)
+            String lastname,
+            @Parameter(description = "Newsletter", required = true)
+            @RequestParam(name = "newsletter", required = true)
+            Boolean newsletter,
             @Parameter(description = "Password", required = true)
             @RequestParam(name = "password", required = true)
             String password
     ) throws GeneralSecurityException, IOException {
         String passwordHash = BCrypt.hashpw(password, BCrypt.gensalt());
-        val newMember = new MemberEntity(UUID.randomUUID(), username, passwordHash, false);
+        val newMember = new MemberEntity(UUID.randomUUID(), username, email, firstname, lastname, passwordHash, newsletter, false);
         memberRepository.save(newMember);
 
         return getToken("password", "", username, password);

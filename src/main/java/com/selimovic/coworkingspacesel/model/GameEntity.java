@@ -34,6 +34,12 @@ public class GameEntity implements Serializable {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Column(name = "booking_type", nullable = false)
+    private Enum booking_type;
+
+    @Column(name = "status", nullable = false)
+    private Enum status;
+
     @ManyToOne
     @JoinColumn(name = "category", nullable = false)
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)

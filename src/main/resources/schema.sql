@@ -25,6 +25,7 @@ CREATE TABLE MEMBER
 (
     id            UUID,
     username      VARCHAR(2000) NOT NULL,
+    email VARCHAR(2000) NOT NULL,
     firstname VARCHAR(2000) NOT NULL,
     lastname VARCHAR(2000) NOT NULL,
     password_hash VARCHAR(2000) NOT NULL,

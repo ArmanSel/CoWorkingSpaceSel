@@ -33,8 +33,19 @@ public class MemberEntity implements Serializable {
     @Column(name = "username", nullable = false)
     String username;
 
+    @Column(name = "email", nullable = false)
+    String email;
+
+    @Column(name = "firstname", nullable = false)
+    String firstname;
+
+    @Column(name = "lastname", nullable = false)
+    String lastname;
     @Column(name = "password_hash", nullable = false)
     String passwordHash;
+
+    @Column(name = "newsletter", nullable = false)
+    Boolean newsletter = true;
 
     @Column(name = "is_admin", nullable = false)
     Boolean isAdmin = false;
@@ -46,6 +57,7 @@ public class MemberEntity implements Serializable {
         MemberEntity that = (MemberEntity) o;
         return id != null && Objects.equals(id, that.id) &&
                 username != null && Objects.equals(username, that.username) &&
+                email != null && Objects.equals(email, that.email) &&
                 passwordHash != null && Objects.equals(passwordHash, that.passwordHash);
     }
 
