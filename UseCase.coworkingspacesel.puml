@@ -1,0 +1,25 @@
+@startuml
+
+left to right direction
+skinparam packageStyle rectangle
+
+actor Administrator
+actor Client
+actor Besucher
+
+rectangle "Coworking Space" {
+    Besucher --> (Registrieren)
+    Administrator --> (Anmelden)
+    Client --> (Anmelden)
+    Client ---> (Daten als Buchung anfragen)
+    Administrator ---> (Buchungen verwalten)
+    Client ---> (E-Mail ändern)
+    Client ---> (Buchungsdatum ändern)
+    Administrator ---> (Benutzer verwalten)
+    Client ---> (Newsletter)
+    Client ---> (Account löschen)
+    (Client verwalten) .> (E-Mail ändern) :include
+    (Client verwalten) .> (Account löschen) :include
+}
+
+@enduml

@@ -1,0 +1,21 @@
+@startuml
+
+title Coworking Space
+    actor Client
+    collections Server
+    database DB
+
+    Client -> Server : GET members/{1}
+    Server -> DB : GetMembersById(1)
+    alt Find Client
+        DB -> Server : Client found
+    else
+        DB -> Server : Client not found
+    end
+
+    alt Authorization
+        Server -> Client : Authorized
+    else
+        Server -> Client : Unauthorized
+    end
+@enduml
