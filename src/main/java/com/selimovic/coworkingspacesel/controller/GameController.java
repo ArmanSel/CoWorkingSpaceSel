@@ -14,7 +14,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/games")
-@Tag(name = "Games", description = "Game management endpoints")
+@Tag(name = "Bookings", description = "Booking management endpoints")
 public class GameController {
 
     private final GameService gameService;
@@ -26,8 +26,8 @@ public class GameController {
     }
 
     @Operation(
-            summary = "Get all games",
-            description = "Loads all games from database.",
+            summary = "Get all bookings",
+            description = "Loads all bookings from database.",
             security = {@SecurityRequirement(name = "JWT Auth")}
     )
     @GetMapping
@@ -41,8 +41,8 @@ public class GameController {
     }
 
     @Operation(
-            summary = "Get one specific game by id",
-            description = "Loads one specific game by id from database.",
+            summary = "Get one specific booking by id",
+            description = "Loads one specific booking by id from database.",
             security = {@SecurityRequirement(name = "JWT Auth")}
     )
     @GetMapping("/{id}")
@@ -51,8 +51,8 @@ public class GameController {
     }
 
     @Operation(
-            summary = "Create a new game",
-            description = "Creates a new game in database.",
+            summary = "Create a new booking",
+            description = "Creates a new booking in database.",
             security = {@SecurityRequirement(name = "JWT Auth")}
     )
     @PreAuthorize("hasRole('ADMIN')")
@@ -63,8 +63,8 @@ public class GameController {
     }
 
     @Operation(
-            summary = "Update an existing game",
-            description = "Updates one specific and existing game in database.",
+            summary = "Update an existing booking",
+            description = "Updates one specific and existing booking in database.",
             security = {@SecurityRequirement(name = "JWT Auth")}
     )
     @PreAuthorize("hasRole('ADMIN')")
@@ -74,8 +74,8 @@ public class GameController {
     }
 
     @Operation(
-            summary = "Delete an existing game",
-            description = "Deletes one specific and existing game in database.",
+            summary = "Delete an existing booking",
+            description = "Deletes one specific and existing booking in database.",
             security = {@SecurityRequirement(name = "JWT Auth")}
     )
     @PreAuthorize("hasRole('ADMIN')")

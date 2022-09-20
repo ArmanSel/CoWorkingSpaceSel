@@ -21,35 +21,35 @@ public class GameService {
     }
 
     public List<GameEntity> loadAll() {
-        log.info("Executing find all games ...");
+        log.info("Executing find all bookings ...");
         return gameRepository.findAll();
     }
 
     public List<GameEntity> loadAllByName(String gameName) {
-        log.info("Executing find games by name '" + gameName + "' ...");
+        log.info("Executing find bookings by name '" + gameName + "' ...");
         return gameRepository.findAllByName(gameName);
     }
 
     public GameEntity loadOne(UUID gameId) {
-        log.info("Executing find game with id " + gameId + " ...");
-        return gameRepository.findById(gameId).orElseThrow(() -> new GameNotFoundException("Game not found with id " + gameId));
+        log.info("Executing find bookings with id " + gameId + " ...");
+        return gameRepository.findById(gameId).orElseThrow(() -> new GameNotFoundException("Booking not found with id " + gameId));
     }
 
     public GameEntity create(GameEntity game) {
-        log.info("Executing create game with id " + game.getId() + " ...");
+        log.info("Executing create booking with id " + game.getId() + " ...");
         return gameRepository.save(game);
     }
 
     public GameEntity update(GameEntity updatedGame) {
-        log.info("Executing update game with id " + updatedGame.getId() + " ...");
+        log.info("Executing update booking with id " + updatedGame.getId() + " ...");
         val gameId = updatedGame.getId();
-        gameRepository.findById(gameId).orElseThrow(() -> new GameNotFoundException("Game not found with id " + gameId));
+        gameRepository.findById(gameId).orElseThrow(() -> new GameNotFoundException("Booking not found with id " + gameId));
         return gameRepository.save(updatedGame);
     }
 
     public void delete(UUID gameId) {
-        log.info("Executing delete game with id " + gameId + " ...");
-        gameRepository.findById(gameId).orElseThrow(() -> new GameNotFoundException("Game not found with id " + gameId));
+        log.info("Executing delete booking with id " + gameId + " ...");
+        gameRepository.findById(gameId).orElseThrow(() -> new GameNotFoundException("Booking not found with id " + gameId));
         gameRepository.deleteById(gameId);
     }
 
