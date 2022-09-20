@@ -12,6 +12,8 @@ CREATE TABLE GAME
 (
     id       UUID,
     name     VARCHAR(50) NOT NULL,
+    booking_type ENUM('MORNING','AFTERNOON','DAY') NOT NULL,
+    status ENUM('APPROVED', 'DECLINED', 'PENDING'),
     category UUID NOT NULL,
 
     PRIMARY KEY (id),
