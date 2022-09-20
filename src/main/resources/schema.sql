@@ -26,6 +26,7 @@ CREATE TABLE MEMBER
     firstname VARCHAR(2000) NOT NULL,
     lastname VARCHAR(2000) NOT NULL,
     password_hash VARCHAR(2000) NOT NULL,
+    newsletter BOOLEAN NOT NULL DEFAULT TRUE,
     is_admin      BOOLEAN       NOT NULL DEFAULT FALSE,
 
     PRIMARY KEY (id)
