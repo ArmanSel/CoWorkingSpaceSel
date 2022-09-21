@@ -33,7 +33,7 @@ public class BookingControllerIntegrationTest {
     private ObjectMapper objectMapper;
 
     @Test
-    public void allGamesShouldBeReturnedFromService() throws Exception {
+    public void allBookingsShouldBeReturnedFromService() throws Exception {
         val accessToken = jwtService.createNewJWT(UUID.randomUUID().toString(), "9135f12e-1b66-4ee6-bbae-df37303cc154", "admin", List.of("ADMIN"));
 
         val response = mockMvc.perform(get("/bookings").header("Authorization", "Bearer " + accessToken))
@@ -41,9 +41,9 @@ public class BookingControllerIntegrationTest {
                 .andDo(print())
                 .andReturn();
 
-        List<BookingEntity> games = objectMapper.readValue(response.getResponse().getContentAsString(), new TypeReference<>() {});
+        List<BookingEntity> bookings = objectMapper.readValue(response.getResponse().getContentAsString(), new TypeReference<>() {});
 
-        assertEquals(3, games.size());
+        assertEquals(3, bookings.size());
     }
 
 }

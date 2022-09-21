@@ -1,0 +1,37 @@
+@startuml
+top to bottom direction
+
+ class Booking {
+    +UUID: id
+    +Member: user
+    +BookingTime: time
+    +BookingStatus: Status
+}
+
+class Member {
+    +UUID: id
+    +String: email
+    +String: firstname
+    +String: lastname
+    +String: password
+    +Boolean: newsletter
+}
+
+enum BookingStatus {
+    OPEN
+    APPROVED
+    DECLINED
+    CANCELED
+}
+
+enum BookingTime {
+    MORNING
+    AFTERNOON
+    DAY
+}
+
+Member ||--|{ Booking
+BookingStatus ||--|{ Booking
+BookingTime ||--|{ Booking
+
+@enduml

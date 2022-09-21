@@ -32,7 +32,6 @@ public class MemberEntity implements Serializable {
 
     @Column(name = "username", nullable = false)
     String username;
-
     @Column(name = "email", nullable = false)
     String email;
 

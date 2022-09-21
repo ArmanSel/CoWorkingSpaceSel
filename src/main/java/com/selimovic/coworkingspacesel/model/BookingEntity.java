@@ -35,10 +35,10 @@ public class BookingEntity implements Serializable {
     private String name;
 
     @Column(name = "booking_type", nullable = false)
-    private Enum booking_type;
+    private String booking_type;
 
     @Column(name = "status", nullable = false)
-    private Enum status;
+    private String status;
 
     @Override
     public boolean equals(Object o) {

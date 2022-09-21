@@ -16,8 +16,9 @@ Authorization: Bearer {{jwt}}
 Content-Type: application/json
 
 {
-  "name": "World of Warcraft",
-  "categoryId": "e1eec954-6ef4-4926-8183-7575af189f2a"
+  "name": "Mike Finger",
+  "booking_type": "AFTERNOON",
+  "status": "PENDING"
 }
 
 ###
@@ -27,8 +28,10 @@ PUT http://localhost:8080/bookings/413e2297-b84b-42ef-97ed-16a8a9d1d671
 Authorization: Bearer {{jwt}}
 
 {
-  "name": "World of Warcraft 2",
-  "categoryId": "e1eec954-6ef4-4926-8183-7575af189f2a"
+  "name": "Walter White",
+  "id": "e1eec954-6ef4-4926-8183-7575af189f2a",
+  "booking_type": "MORNING",
+  "status": "PENDING",
 }
 
 ###

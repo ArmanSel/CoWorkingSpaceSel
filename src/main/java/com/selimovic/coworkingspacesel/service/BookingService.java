@@ -35,9 +35,9 @@ public class BookingService {
         return bookRepository.findById(bookId).orElseThrow(() -> new BookingNotFoundException("Booking not found with id " + bookId));
     }
 
-    public BookingEntity create(BookingEntity game) {
-        log.info("Executing create booking with id " + game.getId() + " ...");
-        return bookRepository.save(game);
+    public BookingEntity create(BookingEntity booking) {
+        log.info("Executing create booking with id " + booking.getId() + " ...");
+        return bookRepository.save(booking);
     }
 
     public BookingEntity update(BookingEntity updatedBooking) {
