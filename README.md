@@ -15,16 +15,23 @@ or
 ### Console/Database
 * H2 console: <http://localhost:8080/h2-console>
 
-### How to register a new user via Swagger?
+### How to create a new User via Swagger?
+* auth/register
+
+Done!
+
+### How to register a new admin via Swagger?
 * auth/register
 * edit the column in the console via SQL:
   ```
-  UPDATE table_name
-  SET column1 = value1, column2 = value2, ...
-  WHERE condition;
+  UPDATE MEMBER
+  SET IS_ADMIN = TRUE
+  WHERE IS_ADMIN = FALSE
   ```
   * auth/token "get new token"
   * paste the new access token in coworkingspacesel/http-requests/http-client.env.json
+
+Done!
 
 ### How to use coworkingspacesel?
 * Self explanatory, read the comments via coworkingspacesel/http-requests/client-requests.rest
