@@ -81,3 +81,37 @@ Authorization: Bearer {{jwt}}
 // Delete one specific and existing Member
 DELETE http://localhost:8080/member/9135f12e-1b66-4ee6-bbae-df37303cc154
 Authorization: Bearer {{jwt}}
+
+// Unsubscribe from newsletter
+PUT http://localhost:8080/member/9135f12e-1b66-4ee6-bbae-df37303cc154
+Authorization: Bearer {{jwt}}
+Content-Type: application/json
+
+{
+  "id": "9135f12e-1b66-4ee6-bbae-df37303cc154",
+  "username": "admin",
+  "email": "admin@admin.ch",
+  "firstname": "admin",
+  "lastname": "administator",
+  "passwordHash": "$2a$10$aDD6I9Ej5.W8busvlsdPx.JvMWyJX8cOeOfVb.3q73KH2swww/N9C",
+  "newsletter": false,
+  "isAdmin": true
+}
+
+###
+
+// Subscribe from newsletter
+PUT http://localhost:8080/member/9135f12e-1b66-4ee6-bbae-df37303cc154
+Authorization: Bearer {{jwt}}
+Content-Type: application/json
+
+{
+  "id": "9135f12e-1b66-4ee6-bbae-df37303cc154",
+  "username": "admin",
+  "email": "admin@admin.ch",
+  "firstname": "admin",
+  "lastname": "administator",
+  "passwordHash": "$2a$10$aDD6I9Ej5.W8busvlsdPx.JvMWyJX8cOeOfVb.3q73KH2swww/N9C",
+  "newsletter": true,
+  "isAdmin": true
+}

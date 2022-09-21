@@ -2,8 +2,10 @@ package com.selimovic.coworkingspacesel.controller;
 
 import com.selimovic.coworkingspacesel.model.MemberEntity;
 import com.selimovic.coworkingspacesel.service.MemberService;
+import com.selimovic.coworkingspacesel.repository.MemberRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.val;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.*;
@@ -45,7 +47,9 @@ public class MemberController {
             description = "update a specific client"
     )
     @PutMapping("/{id}")
-    ResponseEntity<MemberEntity> updateUserById(@PathVariable(name = "id") UUID memberId, @RequestBody MemberEntity member){
+    ResponseEntity<MemberEntity> updateUserById(@PathVariable(name = "id") UUID memberId, @RequestBody MemberEntity updatedMember) {
+        val member = memberService.oneById(memberId);
+        member.setNewsletter(updatedMember.getNewsletter());
         return ResponseEntity.ok(this.memberService.update(member, memberId));
     }
 

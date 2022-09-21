@@ -1,9 +1,13 @@
 # coworkingspacesel
 
 A coworking space application offering services such as registration, member management, record management and much more.
-
+Made via Springboot.
 ## How to setup this project?
-To setup this project, extract the zip file and run the CoWorkingSpaceApplication.
+You either
+ * Extract the zip file and run the CoWorkingSpaceApplication.
+
+or
+* Clone the project via https://github.com/ArmanSel/coworkingspacesel.git
 
 ## Useful links:
 ### Swagger/OpenApi
