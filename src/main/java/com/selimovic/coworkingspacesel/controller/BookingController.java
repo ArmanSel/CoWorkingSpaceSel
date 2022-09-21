@@ -30,7 +30,7 @@ public class BookingController {
     @GetMapping
     List<BookingEntity> loadAll(@RequestParam(value = "bookingName", required = false) String bookingName) {
 
-        if(bookingName != null) {
+        if (bookingName != null) {
             return bookingService.loadAllByName(bookingName);
         }
 
@@ -52,7 +52,6 @@ public class BookingController {
             description = "Creates a new booking in database.",
             security = {@SecurityRequirement(name = "JWT Auth")}
     )
-    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     BookingEntity create(@RequestBody BookingEntity entity) {
         return bookingService.create(entity);
@@ -63,7 +62,6 @@ public class BookingController {
             description = "Updates one specific and existing booking in database.",
             security = {@SecurityRequirement(name = "JWT Auth")}
     )
-    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     BookingEntity update(@RequestBody BookingEntity updatedBookingEntity, @PathVariable UUID id) {
         return bookingService.update(updatedBookingEntity);
@@ -77,6 +75,27 @@ public class BookingController {
     @DeleteMapping("/{id}")
     void delete(@PathVariable UUID id) {
         bookingService.delete(id);
+    }
+
+    @Operation(
+            summary = "Approve an existing booking",
+            description = "Approves one specific and existing booking in database.",
+            security = {@SecurityRequirement(name = "JWT Auth")}
+    )
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/statusapprove/{id}")
+    BookingEntity updateStatusapprove(@RequestBody BookingEntity updatedBookingEntityStatus, @PathVariable UUID id) {
+        return bookingService.update(updatedBookingEntityStatus);
+    }
+    @Operation(
+            summary = "Deny an existing booking",
+            description = "Denies one specific and existing booking in database.",
+            security = {@SecurityRequirement(name = "JWT Auth")}
+    )
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/statusdeny/{id}")
+    BookingEntity updateStatusdeny(@RequestBody BookingEntity updatedBookingEntityStatus, @PathVariable UUID id) {
+        return bookingService.update(updatedBookingEntityStatus);
     }
 
 }

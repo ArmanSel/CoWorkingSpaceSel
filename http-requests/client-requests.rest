@@ -24,12 +24,40 @@ Content-Type: application/json
 
 ###
 
-// Update one specific booking
+// Approve a new booking
 PUT http://localhost:8080/bookings/413e2297-b84b-42ef-97ed-16a8a9d1d671
+Authorization: Bearer {{jwt}}
+Content-Type: application/json
+
+{
+  "name": "Gus Gusman",
+  "id": "b8160463-01a0-4c7a-bd46-5b3716dbe4c6",
+  "booking_type": "AFTERNOON",
+  "status": "APPROVED"
+}
+
+###
+
+// Deny a new booking
+PUT http://localhost:8080/bookings/413e2297-b84b-42ef-97ed-16a8a9d1d671
+Authorization: Bearer {{jwt}}
+Content-Type: application/json
+
+{
+  "id": "413e2297-b84b-42ef-97ed-16a8a9d1d671",
+  "name": "Jesse Meier",
+  "booking_type": "DAY",
+  "status": "DENIED"
+}
+
+###
+
+// Update one specific booking
+PUT http://localhost:8080/bookings/b8160463-01a0-4c7a-bd46-5b3716dbe4c6
 Authorization: Bearer {{jwt}}
 
 {
-  "name": "Walter White",
+  "name": "Dave Daveran",
   "id": "3c13c533-fbac-4881-b94d-f95cb2ef16c8",
   "booking_type": "MORNING",
   "status": "PENDING",
@@ -38,7 +66,7 @@ Authorization: Bearer {{jwt}}
 ###
 
 // Delete one specific and existing booking
-DELETE http://localhost:8080/bookings/3c13c533-fbac-4881-b94d-f95cb2ef16c8
+DELETE http://localhost:8080/bookings/b8160463-01a0-4c7a-bd46-5b3716dbe4c6
 Authorization: Bearer {{jwt}}
 
 ###
@@ -46,4 +74,3 @@ Authorization: Bearer {{jwt}}
 // List all members
 GET http://localhost:8080/member
 Authorization: Bearer {{jwt}}
-
