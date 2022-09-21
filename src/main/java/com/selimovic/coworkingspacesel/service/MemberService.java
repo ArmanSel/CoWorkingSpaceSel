@@ -1,6 +1,5 @@
 package com.selimovic.coworkingspacesel.service;
 
-import com.selimovic.coworkingspacesel.exception.MemberHasBookingsException;
 import com.selimovic.coworkingspacesel.exception.MemberNotFoundException;
 import com.selimovic.coworkingspacesel.model.MemberEntity;
 import com.selimovic.coworkingspacesel.repository.MemberRepository;
@@ -21,29 +20,31 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    public MemberEntity create(MemberEntity member){
-        log.info("Executing create new member with email {}", member.getEmail());
-        return this.memberRepository.save(member);
-    }
-
     public List<MemberEntity> all(){
-        log.info("Executing get all members from database");
+        log.info("Executing get all clients from database");
         return (List<MemberEntity>) this.memberRepository.findAll();
     }
 
     public MemberEntity oneById(UUID memberId){
-        log.info("Executing get single member by id {}", memberId);
+        log.info("Executing get a specific client by their id {}", memberId);
         return this.memberRepository.findById(memberId)
                 .orElseThrow(
-                        () -> new MemberNotFoundException("Member with id " + memberId + " not found" )
+                        () -> new MemberNotFoundException("Client with id " + memberId + " not found" )
                 );
     }
 
     @Transactional
     public MemberEntity update(MemberEntity member, UUID memberId){
-        log.info("Execute update member by Id {}", memberId);
+        log.info("Update client by their Id {}", memberId);
         this.oneById(memberId);
         member.setId(memberId);
         return this.memberRepository.save(member);
     }
+
+    @Transactional
+    public void delete(UUID memberId){
+        MemberEntity member = oneById(memberId);
+        this.memberRepository.delete(member);
+    }
+
     }
