@@ -40,16 +40,6 @@ public class BookingEntity implements Serializable {
     @Column(name = "status", nullable = false)
     private Enum status;
 
-    @ManyToOne
-    @JoinColumn(name = "category", nullable = false)
-    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
-    private CategoryEntity category;
-
-    @Transient
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @Schema(accessMode = Schema.AccessMode.WRITE_ONLY)
-    private UUID categoryId;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
