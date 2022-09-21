@@ -74,7 +74,6 @@ public class BookingController {
             description = "Deletes one specific and existing booking in database.",
             security = {@SecurityRequirement(name = "JWT Auth")}
     )
-    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     void delete(@PathVariable UUID id) {
         bookingService.delete(id);

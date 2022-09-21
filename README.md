@@ -1,6 +1,27 @@
-# spring-boot-crud-example
+# coworkingspacesel
 
+A coworking space application offering services such as registration, member management, record management and much more.
+
+## How to setup this project?
+To setup this project, extract the zip file and run the CoWorkingSpaceApplication.
 
 ## Useful links:
-* **API documentation:** <http://localhost:8080/swagger-ui/index.html>
-* **H2 console:** <http://localhost:8080/h2-console>
+### Swagger/OpenApi
+* API documentation: <http://localhost:8080/swagger-ui/index.html>
+### Console/Database
+* H2 console: <http://localhost:8080/h2-console>
+
+### How to register a new user via Swagger?
+* auth/register
+* edit the column in the console via SQL:
+  ```
+  UPDATE table_name
+  SET column1 = value1, column2 = value2, ...
+  WHERE condition;
+  ```
+  * auth/token "get new token"
+  * paste the new access token in coworkingspacesel/http-requests/http-client.env.json
+
+### How to use coworkingspacesel?
+* Self explanatory, read the comments via coworkingspacesel/http-requests/client-requests.rest
+
