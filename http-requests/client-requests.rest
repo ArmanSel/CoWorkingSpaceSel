@@ -11,11 +11,12 @@ Authorization: Bearer {{jwt}}
 ###
 
 // Create a new booking
-POST http://localhost:8080/bookings/
+POST http://localhost:8080/bookings
 Authorization: Bearer {{jwt}}
 Content-Type: application/json
 
 {
+  "id": "3c13c533-fbac-4881-b94d-f95cb2ef16c2",
   "name": "Mike Finger",
   "booking_type": "AFTERNOON",
   "status": "PENDING"
@@ -29,7 +30,7 @@ Authorization: Bearer {{jwt}}
 
 {
   "name": "Walter White",
-  "id": "e1eec954-6ef4-4926-8183-7575af189f2a",
+  "id": "3c13c533-fbac-4881-b94d-f95cb2ef16c8",
   "booking_type": "MORNING",
   "status": "PENDING",
 }
